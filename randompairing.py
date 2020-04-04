@@ -1,15 +1,16 @@
 # buff bot script to randomly pair people and create dm #
 
-#from slackclient import SlackClient
-
 import os
+import slack
 
 slack_api_token = os.environ.get('slack_api_token')
-print(slack_api_token)
+print('slack_api_token')
 
-# bot spam channel id C06HLL9CL
+client = slack.WebClient(token=os.environ.get('slack_api_token'))
+response = client.chat_postMessage(
+    channel='#botspam',
+    text="Hellooo!")
 
-#message-"hello"
-#slack.chat.post_message('#botspam',message)
+
 
 
