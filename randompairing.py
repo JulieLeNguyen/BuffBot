@@ -36,15 +36,6 @@ workout_list=[
     '15 burpees',
     '2 mile run'
 ]
-workout1=random.choice(workout_list)
-workout2=random.choice(workout_list)
-
-workout1_index=workout_list.index(workout1)
-workout2_index=workout_list.index(workout2)
-del workout_list[workout1_index]
-del workout_list[workout2_index]
-
-workout3=random.choice(workout_list)
 
 # get list of members in channel
 rolecall= client.conversations_members(channel=buff_channel_id)['members']
@@ -58,7 +49,7 @@ botindex=rolecall.index(buffbot_id)
 #print(botindex)
 del rolecall[botindex]
 
-#generate 2 list and then pair people from those lists
+#generate 2 lists
 length=int(len(rolecall))
 #print(length)
 firsthalf=rolecall[:length//2]
@@ -67,17 +58,15 @@ secondhalf=rolecall[length//2:]
 #print("secondhalf",secondhalf)
 
 #slide into those dms
-#check to see rolecall even or odd
 if (length %2)==0:
     max = len(firsthalf)
     n = 0
     while n < max:
         warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
-        print(warmup)
         response = client.chat_postMessage(
             channel=warmup['channel']['id'],
             text="Hello! It's time to get *buff*! _(this is a test)_ \n"
-                  "Your workout options are:\n>" +workout1 + "\n>" +workout2 + "\n>" +workout3)
+                  "Your workout options are:\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
         n += 1
 else:
     max = len(secondhalf)
@@ -85,17 +74,38 @@ else:
     n=0
     while n<max-2:
         warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
-        print(warmup)
         response = client.chat_postMessage(
            channel=warmup['channel']['id'],
            text="Hello! It's time to get *buff*! _(this is a test)_ \n"
-                "Your workout options are:\n>" +workout1 + "\n>" +workout2 + "\n>" +workout3)
+                "Your workout options are:\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
         n += 1
     warmup = client.conversations_open(users=[firsthalf[max-2], secondhalf[max-2], secondhalf[max-1]])
-    print(warmup)
-
+    response = client.chat_postMessage(
+        channel=warmup['channel']['id'],
+        text="Hello! It's time to get *buff*! _(this is a test)_ \n"
+             "Your workout options are:\n>" + random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
 
 #checking in
-#response = client.chat_postMessage(
-   # channel=howdy['channel']['id']
-   # text= "Checking in! Did you get a chance to workout?")
+if (length %2)==0:
+    max = len(firsthalf)
+    m = 0
+    while m < max:
+        warmup = client.conversations_open(users=[firsthalf[m], secondhalf[m]])
+        response = client.chat_postMessage(
+            channel=warmup['channel']['id'],
+            text="Checking in! Did you get a chance to meet?"
+                 m +=1
+else:
+    max = len(secondhalf)
+    print(max)
+    m=0
+    while m<max-2:
+        warmup = client.conversations_open(users=[firsthalf[m], secondhalf[m]])
+        response = client.chat_postMessage(
+           channel=warmup['channel']['id'],
+           text="Checking in!"
+           m += 1
+    warmup = client.conversations_open(users=[firsthalf[max-2], secondhalf[max-2], secondhalf[max-1]])
+    response = client.chat_postMessage(
+        channel=warmup['channel']['id'],
+        text="Checking in! Did you get a chance to meet?"
