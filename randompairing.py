@@ -115,4 +115,7 @@ else:
         channel=warmup['channel']['id'],
         text="Checking in! Did you get the chance to meet?")
 
-#to add in the future: specific day(s) to pair people and when to check in, post in channel how many people met, and maybe add leaderboards if pairs do extra workout options?
+#to add in the future:
+# specific day(s) to pair people and when to check in
+# post in channel how many people met
+# maybe add leaderboards if pairs do extra workout options?
