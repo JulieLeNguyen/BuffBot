@@ -1,1 +1,1 @@
-willard
+Hello! This is my first time learning Python and I decided to create a Slack Bot called Buff Bot. Buff stands for "Buddy up for fitness"! It pairs people up from #buff channel on Computer Science House Chat and gives them 3 workout options to do together. Pairs are also welcome to do their own routine, but the goal is to get together and be active to get the blood flowing a bit :)
