@@ -70,7 +70,6 @@ if (length %2)==0:
         n += 1
 else:
     max = len(secondhalf)
-    print(max)
     n=0
     while n<max-2:
         warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
@@ -93,19 +92,18 @@ if (length %2)==0:
         warmup = client.conversations_open(users=[firsthalf[m], secondhalf[m]])
         response = client.chat_postMessage(
             channel=warmup['channel']['id'],
-            text="Checking in! Did you get a chance to meet?"
-                 m +=1
+            text="Checking in! Did you get a chance to meet?")
+        m += 1
 else:
     max = len(secondhalf)
-    print(max)
     m=0
     while m<max-2:
         warmup = client.conversations_open(users=[firsthalf[m], secondhalf[m]])
         response = client.chat_postMessage(
            channel=warmup['channel']['id'],
-           text="Checking in!"
-           m += 1
+           text= "Checking in! Did you get a chance to meet?"
+        m += 1
     warmup = client.conversations_open(users=[firsthalf[max-2], secondhalf[max-2], secondhalf[max-1]])
     response = client.chat_postMessage(
         channel=warmup['channel']['id'],
-        text="Checking in! Did you get a chance to meet?"
+        text="Checking in! Did you get the chance to meet?"
