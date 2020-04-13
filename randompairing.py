@@ -74,9 +74,9 @@ if (length %2)==0:
     while n < max:
         warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
         print(warmup)
-            response = client.chat_postMessage(
-             channel=howdy['channel']['id'],
-             text="Hello! It's time to get *buff*! _(this is a test)_ \n"
+        response = client.chat_postMessage(
+            channel=warmup['channel']['id'],
+            text="Hello! It's time to get *buff*! _(this is a test)_ \n"
                   "Your workout options are:\n>" +workout1 + "\n>" +workout2 + "\n>" +workout3)
         n += 1
 else:
@@ -86,8 +86,8 @@ else:
     while n<max-2:
         warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
         print(warmup)
-         response = client.chat_postMessage(
-           channel=howdy['channel']['id'],
+        response = client.chat_postMessage(
+           channel=warmup['channel']['id'],
            text="Hello! It's time to get *buff*! _(this is a test)_ \n"
                 "Your workout options are:\n>" +workout1 + "\n>" +workout2 + "\n>" +workout3)
         n += 1
