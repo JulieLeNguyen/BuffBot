@@ -20,28 +20,9 @@ client = slack.WebClient(token=os.environ.get('slack_api_token'))
     # text="testing!")
 
 #workout list
-workout_list=[
-    '1 mile jog',
-    'take a walk around campus',
-    '50 situps',
-    'go swinging!',
-    'piggyback up and down floor',
-    'run up to ehouse and back down to csh',
-    'go for a bike/long board ride',
-    'try rock climbing',
-    '50 squats',
-    '30 pushups',
-    'play some ping pong',
-    'do 20 jumping jacks every time you hear the word: Thinkpad',
-    'try out a weightlifting session',
-    'plank competition',
-    '15 burpees',
-    '2 mile run',
-    'lunges from northside to southside and back',
-    'play some frisbee',
-    '2min wall sit',
-    'go to the pool'
-]
+w=open("workoutslist.txt", "r")
+workouts= w.readlines()
+#print(random.choice(workouts))
 
 # get list of members in channel
 rolecall= client.conversations_members(channel=buff_channel_id)['members']
@@ -73,7 +54,7 @@ if (length %2)==0: #even scenario
         response = client.chat_postMessage(
             channel=warmup['channel']['id'],
             text="Hello! It's time to get *buff*! _(this is a test)_ \n"
-                  "Your workout options are:\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
+                  "Your workout options are:\n>" +random.choice(workouts) + "\n>" +random.choice(workouts) + "\n>" +random.choice(workouts))
         n += 1
 else: #odd
     max = len(secondhalf)
@@ -83,13 +64,13 @@ else: #odd
         response = client.chat_postMessage(
            channel=warmup['channel']['id'],
            text="Hello! It's time to get *buff*! _(this is a test)_ \n"
-                "Your workout options are:\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
+                "Your workout options are:\n>" +random.choice(workouts) + "\n>" +random.choice(workouts) + "\n>" +random.choice(workouts))
         n += 1
     warmup = client.conversations_open(users=[firsthalf[max-2], secondhalf[max-2], secondhalf[max-1]]) #group of 3
     response = client.chat_postMessage(
         channel=warmup['channel']['id'],
         text="Hello! It's time to get *buff*! _(this is a test)_ \n"
-             "Your workout options are:\n>" + random.choice(workout_list) + "\n>" +random.choice(workout_list) + "\n>" +random.choice(workout_list))
+             "Your workout options are:\n>" + random.choice(workouts) + "\n>" +random.choice(workouts) + "\n>" +random.choice(workouts))
 
 #checking in
 if (length %2)==0:
@@ -114,6 +95,11 @@ else:
     response = client.chat_postMessage(
         channel=warmup['channel']['id'],
         text="Checking in! Did you get the chance to meet?")
+
+
+#closing workoutslist.txt
+w=open("workoutslist.txt", "r")
+print(w.readline())
 
 #to add in the future:
 # specific day(s) to pair people and when to check in
