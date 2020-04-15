@@ -86,7 +86,7 @@ else:
     max = len(secondhalf)
     m=0
     while m<max-2:
-        warmup = client.conversations_open(users=[firsthalf[n], secondhalf[n]])
+        warmup = client.conversations_open(users=[firsthalf[m], secondhalf[m]])
         response = client.chat_postMessage(
             channel=warmup['channel']['id'],
             text="Checking in! Did you get the chance to meet?")
@@ -96,10 +96,10 @@ else:
         channel=warmup['channel']['id'],
         text="Checking in! Did you get the chance to meet?")
 
-
 #closing workoutslist.txt
 w=open("workoutslist.txt", "r")
 print(w.readline())
+w.close()
 
 #to add in the future:
 # specific day(s) to pair people and when to check in
